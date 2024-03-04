@@ -15,5 +15,13 @@ onMounted(async () => {
 
 
 <template>
-  {{ question.question }}
+  
+  
+  <div v-if="question" class="">
+    <BaseTitle>{{ question.category  }}</BaseTitle>
+    {{ question.question }}
+  </div>
+  <div v-else class="">
+    Loading...
+  </div>
 </template>
