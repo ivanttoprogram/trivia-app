@@ -17,7 +17,6 @@ const notification = ref('')
 
 
 
-
 onMounted(async () => {
   question.value = await api.getQuestion(route.params.id)
 
@@ -25,7 +24,7 @@ onMounted(async () => {
     id: answers.value.length,
     correct: true,
     answer: question.value.correct_answer,
-    points: question.value.difficulty === 'easy' ? 10 : question.value.difficutly === 'medium' ? 20 : 30, 
+    points: question.value.difficulty === 'easy' ? 10 : question.value.difficulty === 'medium' ? 20 : 30,
   })
 
   question.value.incorrect_answers.map((wrong_answer) => {
@@ -77,9 +76,9 @@ const handleAnswer = (points) => {
 
 <div v-if="question" class="flex h-full w-full flex-col items-center gap-8 p-10">
   <BaseTitle>
-    <MainScore></MainScore> &nbsp;
-    <span class="font-bold" :class="notification === 'CORRECT' ? 'text-green-700' : 'text-red-600'">
-    {{ notification }}
+    <MainScore></MainScore> &nbsp; 
+    <span class="font-bold" :class="notification === 'CORRECT' ? 'text-green-500' : 'text-red-500'">
+      {{ notification }}
     </span>
   </BaseTitle>
   <!-- {{  question.question }} -->
@@ -88,9 +87,9 @@ const handleAnswer = (points) => {
   <div class="grid w-full flex-grow grid-cols-2 gap-8">
       <div v-for="answer in answers" 
       v-html="answer.answer" 
-      :key="answer.id" 
-      @click="handleAnswer(answerpoints)"
-      class="bg-green-600 flex items-center justify-center text-4xl rounded-lg text-white py-10 px-2 ">
+      :key="answer.id"
+      @click="handleAnswer(answer.points)"
+      class="bg-green-500 flex items-center justify-center text-4xl rounded-lg text-white py-10 px-2 ">
 
       </div>
 
